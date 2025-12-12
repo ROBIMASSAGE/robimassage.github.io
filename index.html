@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBIMASSAGE Studio | Specjalistyczna Terapia i Luksusowy Masaż</title>
+    <!-- Ładowanie Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Konfiguracja Tailwind, używając fontu Inter jako bazowego -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                    },
+                    colors: {
+                        'stone-950': '#0c0a09', // Trochę ciemniejszy niż 900
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Zapewnienie płynnego scrollowania do sekcji po kliknięciu linku/przycisku */
+        html {
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1280px;
+        }
+
+        /* Styl dla sekcji Hero z tłem (dostosowany do obrazu) */
+        #hero-background {
+            /* Wstawiony obraz przesłany przez użytkownika dla tła */
+            background-image: url('uploaded:Gemini_Generated_Image_ay6a50ay6a50ay6a.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Prosta animacja ładowania (spinner) */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #facc15; /* yellow-400 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        /* Animacja pojawiania się obrazu */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-stone-900 font-sans antialiased text-stone-200">
+
+    <!-- Główny kontener z eleganckim ciemnym tłem -->
+    <div class="min-h-screen">
+
+        <!-- Nagłówek i Nawigacja (ciemny, z efektem szkła) -->
+        <header class="sticky top-0 z-50 bg-stone-900/90 shadow-2xl shadow-stone-900 backdrop-blur-md transition-shadow duration-300">
+            <!-- Wyśrodkowany kontener nagłówka (w trybie kolumnowym) -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col items-center relative">
+                
+                <!-- LOGO TEKSTOWE (Kursywa, Ozdobna Czcionka, bez spacji) -->
+                <div class="mb-4 md:mb-2 cursor-pointer">
+                    <span class="text-4xl sm:text-5xl font-serif italic font-extrabold text-yellow-400 tracking-wider transition-colors duration-300 hover:text-yellow-300">
+                        ROBIMASSAGE
+                    </span>
+                </div>
+                
+                <!-- NOWY PASEK PRZYCISKÓW (Desktop Only, w nowej linii) -->
+                <div class="hidden md:flex space-x-4 lg:space-x-6 items-center pt-2">
+                    
+                    <!-- Przycisk 1: TERAPIA BÓLU (Teraz pierwszy) -->
+                    <button class="px-5 py-2 text-md bg-stone-800 text-stone-200 font-semibold rounded-lg hover:bg-yellow-600 hover:text-stone-900 transition duration-300 shadow-md transform hover:scale-[1.03]" onclick="scrollToSection('terapia')">
+                        TERAPIA BÓLU
+                    </button>
+                    
+                    <!-- Przycisk 2: REGENERACJA I ESTETYKA -->
+                    <button class="px-5 py-2 text-md bg-stone-800 text-stone-200 font-semibold rounded-lg hover:bg-yellow-600 hover:text-stone-900 transition duration-300 shadow-md transform hover:scale-[1.03]" onclick="scrollToSection('regeneracja')">
+                        REGENERACJA I ESTETYKA
+                    </button>
+
+                    <!-- Przycisk 3: O MNIE (Teraz przedostatni) -->
+                    <button class="px-5 py-2 text-md bg-stone-800 text-stone-200 font-semibold rounded-lg hover:bg-yellow-600 hover:text-stone-900 transition duration-300 shadow-md transform hover:scale-[1.03]" onclick="scrollToSection('o-mnie')">
+                        O MNIE
+                    </button>
+                    
+                    <!-- Przycisk 4: UMÓW WIZYTĘ (CTA, ostatni) -->
+                    <button class="px-7 py-2 text-md bg-yellow-400 text-stone-900 font-extrabold rounded-lg shadow-lg shadow-yellow-500/50 hover:bg-yellow-300 transition duration-300 transform hover:scale-[1.05]" onclick="scrollToSection('kontakt')">
+                        UMÓW WIZYTĘ
+                    </button>
+                    
+                </div>
+
+                <!-- Przycisk Menu Mobilnego (tylko na Mobile, pozycja absolutna) -->
+                <button id="mobile-menu-button" class="md:hidden absolute top-4 right-4 p-2 rounded-md text-stone-200 hover:bg-stone-800">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ikona hamburgera (domyślna) -->
+                        <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <!-- Ikona krzyżyka (ukryta) -->
+                        <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menu Mobilne (rozsuwane) -->
+            <div id="mobile-menu" class="md:hidden bg-stone-800 shadow-xl border-t border-stone-700 pb-4 hidden">
+                <nav class="px-4 pt-2 pb-3 space-y-2">
+                    <button class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-stone-200 hover:bg-yellow-900 hover:text-yellow-400" onclick="scrollToSectionAndClose('terapia')">TERAPIA BÓLU</button>
+                    <button class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-stone-200 hover:bg-yellow-900 hover:text-yellow-400" onclick="scrollToSectionAndClose('regeneracja')">REGENERACJA I ESTETYKA</button>
+                    <!-- Przycisk O MNIE na końcu listy mobilnej -->
+                    <button class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-stone-200 hover:bg-yellow-900 hover:text-yellow-400" onclick="scrollToSectionAndClose('o-mnie')">O MNIE</button>
+                    
+                    <button class="w-full mt-4 px-3 py-3 bg-yellow-400 text-stone-900 font-semibold rounded-lg shadow-md hover:bg-yellow-300 transition duration-150" onclick="scrollToSectionAndClose('kontakt')">
+                        UMÓW WIZYTĘ
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Sekcja Hero (Bardziej Dynamiczna, Ciemne Tło) -->
+            <section id="hero-background" class="relative bg-stone-900 pt-16 pb-24 sm:pt-24 sm:pb-40 overflow-hidden border-b border-stone-800 text-center">
+                <!-- Nakładka, która przyciemnia obraz tła, aby tekst był czytelny -->
+                <div class="absolute inset-0 z-0 bg-stone-900/80 backdrop-brightness-50"></div>
+                
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="lg:flex lg:items-center lg:justify-center flex-col">
+                        <!-- Lewa kolumna: Tekst (teraz wyśrodkowany) -->
+                        <div class="lg:w-full lg:px-16 mx-auto max-w-4xl">
+                            <p class="text-yellow-400 font-semibold text-lg mb-2 tracking-widest uppercase">Poczuj ulgę. Odzyskaj równowagę.</p>
+                            <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter text-white leading-none">
+                                <span class="block">Specjalistyczna</span> Terapia i <span class="text-yellow-400">Luksusowy Masaż</span>
+                            </h1>
+                            <p class="mt-8 text-2xl text-stone-200 max-w-lg mx-auto">
+                                <!-- Poprawiona sierota 'i' -->
+                                Łączę precyzyjną diagnostykę bólu z holistycznymi metodami regeneracji, aby zapewnić trwałe rezultaty i&nbsp;głębokie odprężenie.
+                            </p>
+                            <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+                                <button class="px-10 py-4 bg-yellow-400 text-stone-900 text-xl font-medium rounded-xl shadow-2xl shadow-yellow-500/50 hover:bg-yellow-300 transition duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5" onclick="scrollToSection('kontakt')">
+                                    Zarezerwuj Luksusową Wizytę
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sekcja Usługi - Karty Premium (Tło ciemne, karty jasne) -->
+            <section id="uslugi" class="py-24 bg-stone-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-extrabold text-white tracking-tight">Kluczowe Obszary Działania</h2>
+                        <p class="mt-4 text-xl text-stone-400 max-w-3xl mx-auto">Dwie specjalistyczne ścieżki: medyczna terapia bólu i zaawansowana estetyka ciała i twarzy.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        
+                        <!-- Karta 1: TERAPIA BÓLU I REHABILITACJA -->
+                        <div id="terapia" class="group bg-stone-800 p-10 rounded-3xl shadow-2xl border-t-8 border-yellow-400 transition-all duration-500 hover:shadow-yellow-500/30 hover:bg-stone-700 transform hover:scale-[1.01]">
+                            
+                            <!-- Obraz Generowany dla Terapii Bólu -->
+                            <div class="mb-6 h-48 sm:h-64 flex items-center justify-center bg-stone-700 rounded-xl overflow-hidden">
+                                <div id="therapy-image-loading" class="spinner"></div>
+                                <img id="therapy-image" class="w-full h-full object-cover hidden rounded-xl" src="" alt="Ładowanie obrazu terapii manualnej"/>
+                            </div>
+
+                            <div class="text-yellow-400 mb-6 flex items-center">
+                                <!-- IKONA DLA TERAPII BÓLU (Kręgosłup/Zdrowie) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-400 mr-3"><path d="M6 4v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4"/><path d="M12 2v20"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+                                <h3 class="text-3xl font-bold text-white">TERAPIA BÓLU I REHABILITACJA</h3>
+                            </div>
+                            <p class="text-stone-300 font-semibold text-xl mb-8 border-l-4 border-yellow-400 pl-4">Specjalistyczna Terapia Bólu i Kręgosłupa</p>
+                            
+                            <ul class="space-y-4 text-lg text-stone-300 list-none">
+                                <li class="flex items-start"><p><span class="font-bold text-white">Manipulacje Krótkodźwigniowe (HVLA):</span> Natychmiastowe usunięcie blokad i bólu.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Fizykoterapia Wspomagająca:</span> Ultradźwięki, Impulsy Elektryczne i Krioterapia dla szybszej regeneracji.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Rwa Kulszowa – Usuwanie Przyczyny Bólu:</span> Techniki manualne celujące w&nbsp;źródło ucisku nerwu kulszowego.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Terapia Bólu przez Skórę:</span> Zaawansowane techniki blokujące impulsy bólowe, przynosząc natychmiastową ulgę.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Mobilizacja i Uwalnianie Powięziowe:</span> Przywracanie elastyczności i prawidłowej postawy.</p></li>
+                            </ul>
+                        </div>
+
+                        <!-- Karta 2: HOLISTYCZNA REGENERACJA I ESTETYKA -->
+                        <div id="regeneracja" class="group bg-stone-800 p-10 rounded-3xl shadow-2xl border-t-8 border-yellow-400 transition-all duration-500 hover:shadow-yellow-500/30 hover:bg-stone-700 transform hover:scale-[1.01]">
+                            
+                            <!-- Obraz Generowany dla Regeneracji i Estetyki -->
+                            <div class="mb-6 h-48 sm:h-64 flex items-center justify-center bg-stone-700 rounded-xl overflow-hidden">
+                                <div id="relaxation-image-loading" class="spinner"></div>
+                                <img id="relaxation-image" class="w-full h-full object-cover hidden rounded-xl" src="" alt="Ładowanie obrazu luksusowego masażu"/>
+                            </div>
+
+                            <div class="text-yellow-400 mb-6 flex items-center">
+                                <!-- IKONA DLA REGENERACJI I ESTETYKI (Błysk/Uroda) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-400 mr-3"><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>
+                                <h3 class="text-3xl font-bold text-white">HOLISTYCZNA REGENERACJA I ESTETYKA</h3>
+                            </div>
+                            <p class="text-stone-300 font-semibold text-xl mb-8 border-l-4 border-yellow-400 pl-4">Masaż Anti-Aging, Balans Ciała i Uroda</p>
+
+                            <ul class="space-y-4 text-lg text-stone-300 list-none">
+                                <li class="flex items-start"><p><span class="font-bold text-white">Terapia Usuwania Blizn Laserem:</span> Precyzyjna redukcja widoczności, zrostów i bólu.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Kobido – Japoński Lifting:</span> Najbardziej zaawansowany masaż modelujący twarzy.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Masaż Relaksacyjny Świecą:</span> Głębokie odprężenie z pielęgnacją skóry ciepłym woskiem.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Autoterapia Nerwu Błędnego:</span> Techniki regulujące stres i&nbsp;uspokajające układ nerwowy.</p></li>
+                                <li class="flex items-start"><p><span class="font-bold text-white">Zrozum Ból / Przeciwbólowa Dieta:</span> Poradnictwo i strategie zarządzania bólem.</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- NOWA LOKALIZACJA: SEKCJA O MNIE (Terapeuta) -->
+            <section id="o-mnie" class="py-24 bg-stone-950 border-t border-stone-800">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:flex lg:items-center lg:justify-between lg:space-x-12">
+                        
+                        <!-- Lewa strona: Zdjęcie i Krótkie CV (TERAZ GENEROWANE) -->
+                        <div class="lg:w-1/3 mb-12 lg:mb-0">
+                            <!-- KONTENER DLA GENEROWANEGO ZDJĘCIA -->
+                            <div class="w-64 h-64 mx-auto rounded-full border-4 border-yellow-400 shadow-xl shadow-yellow-500/20 overflow-hidden flex items-center justify-center bg-stone-700">
+                                <div id="profile-image-loading" class="spinner"></div>
+                                <img 
+                                    id="profile-image" 
+                                    src="" 
+                                    alt="Zdjęcie profilowe Roberta, terapeuty manualnego" 
+                                    class="w-full h-full object-cover hidden"
+                                />
+                            </div>
+                            
+                            <h4 class="text-xl font-bold text-white text-center mt-6 mb-4">Robert, Terapeuta Manualny</h4>
+                        </div>
+
+                        <!-- Prawa strona: Tekst o filozofii i doświadczeniu -->
+                        <div class="lg:w-2/3">
+                            <h2 class="text-5xl font-extrabold text-white tracking-tight mb-6 border-l-4 border-yellow-400 pl-4">Moja Filozofia: Precyzja i Holizm</h2>
+                            <p class="text-xl text-stone-300 mb-6 leading-relaxed">
+                                Nazywam się Robert i jestem pasjonatem terapii manualnej oraz piękna płynącego z naturalnej równowagi ciała. 
+                                Moja praca to połączenie medycznej precyzji z troską o holistyczną regenerację. Zamiast leczyć objawy, szukam i trwale usuwam źródło bólu, wykorzystując zaawansowane techniki diagnostyczne i manualne.
+                            </p>
+                            <p class="text-xl text-stone-300 mb-6 leading-relaxed">
+                                Wierzę, że prawdziwa ulga i długotrwała młodość zaczynają się od wewnątrz. Dlatego w moim studio znajdziesz zarówno skuteczne terapie kręgosłupa i stawów, jak i luksusowe, regeneracyjne zabiegi estetyczne, takie jak Kobido. Każda wizyta jest projektowana indywidualnie, by przywrócić Ci pełną funkcjonalność i głębokie odprężenie.
+                            </p>
+                            <button class="mt-4 px-8 py-3 bg-yellow-400 text-stone-900 font-semibold rounded-lg shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-[1.02]" onclick="scrollToSection('kontakt')">
+                                Chcę porozmawiać o moim problemie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- KONIEC SEKCJI: O MNIE -->
+
+
+            <!-- Sekcja Kontakt / CTA (Wyróżnienie na złoto-czarnym tle) -->
+            <section id="kontakt" class="py-24 bg-stone-950 border-t border-yellow-400">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-5xl font-extrabold text-white mb-4">Rezerwacja i Konsultacja</h2>
+                    <p class="mt-4 text-yellow-300 text-xl max-w-3xl mx-auto mb-12">
+                        <!-- Poprawiony przenos po przecinku: 'mną, aby' -->
+                        Skontaktuj się ze mną,&nbsp;aby omówić Twój problem zdrowotny lub umówić się na wybrany zabieg estetyczny.
+                    </p>
+                    
+                    <!-- Kontener z numerem telefonu -->
+                    <div class="max-w-2xl mx-auto bg-stone-800 p-10 rounded-3xl shadow-2xl shadow-yellow-500/20">
+                        <!-- Informacja kontaktowa - duży, wyraźny numer -->
+                        <p class="text-3xl font-bold text-white mb-6">Zadzwoń i Zarezerwuj Termin:</p>
+                        <!-- Link telefoniczny dla lepszej użyteczności mobilnej -->
+                        <a href="tel:605593210" class="p-4 border-4 border-yellow-400 bg-stone-900 rounded-xl inline-block transition transform hover:scale-[1.05] duration-300 cursor-pointer">
+                            <!-- Numer telefonu -->
+                            <p class="text-5xl font-extrabold text-yellow-400 tracking-wider">605 593 210</p>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Stopka (Najciemniejsza) -->
+        <footer class="bg-stone-950 text-white py-12 border-t border-stone-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-lg text-stone-300">&copy; 2025 ROBIMASSAGE Studio. Twoja Oaza Zdrowia.</p>
+                <div class="mt-4 text-sm text-stone-500 space-x-6">
+                    <a href="#" class="hover:text-yellow-400 transition duration-300">Polityka Prywatności</a>
+                    <a href="#" class="hover:text-yellow-400 transition duration-300">Regulamin</a>
+                    <a href="#" class="hover:text-yellow-400 transition duration-300">Lokalizacja</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // --- Funkcje API i generowanie obrazów ---
+        
+        // Asynchroniczna funkcja do generowania obrazu i wyświetlania go w elemencie
+        async function generateImage(prompt, imgId) {
+            const imgElement = document.getElementById(imgId);
+            const spinnerElement = document.getElementById(imgId + '-loading');
+            
+            // Pokaż spinner i ukryj obraz
+            if (imgElement && spinnerElement) {
+                imgElement.classList.add('hidden');
+                spinnerElement.classList.remove('hidden');
+            } else {
+                console.error("Brak elementu obrazu lub spinnera.");
+                return;
+            }
+
+            // Ustawienia API
+            const apiKey = ""; // API Key zostanie dostarczony w runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+
+            // Treść żądania do modelu Imagen
+            const payload = { 
+                instances: { 
+                    prompt: prompt,
+                    // Ustawienie proporcji obrazu 1:1 dla zdjęcia profilowego, 4:3 dla innych sekcji
+                    aspectRatio: (imgId === 'profile-image') ? "1:1" : "4:3"
+                }, 
+                parameters: { 
+                    "sampleCount": 1
+                } 
+            };
+
+            // Implementacja funkcji backoff dla ponownych prób
+            const maxRetries = 5;
+            let currentRetry = 0;
+            let response;
+            
+            while (currentRetry < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.status !== 429 && response.ok) {
+                        break; // Sukces lub inny błąd niż 429 (Too Many Requests)
+                    }
+
+                    // Obsługa 429 (Zbyt wiele żądań) - oczekiwanie z wykładniczym backoff
+                    if (response.status === 429) {
+                        const delay = Math.pow(2, currentRetry) * 1000 + Math.random() * 1000;
+                        currentRetry++;
+                        if (currentRetry < maxRetries) {
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                        } else {
+                            throw new Error('API Rate Limit Exceeded after retries.');
+                        }
+                    } else {
+                        throw new Error(`Błąd HTTP! Status: ${response.status}`);
+                    }
+                } catch (error) {
+                    currentRetry++;
+                    if (currentRetry >= maxRetries) {
+                        console.error('Błąd generowania obrazu po wszystkich ponownych próbach:', error);
+                        // Kontynuuj, aby obsłużyć błąd poza pętlą (przejście do Fallback)
+                        break; 
+                    }
+                    const delay = Math.pow(2, currentRetry) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+
+
+            try {
+                if (response && response.ok) {
+                    const result = await response.json();
+                    
+                    if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                        const base64Data = result.predictions[0].bytesBase64Encoded;
+                        const imageUrl = `data:image/png;base64,${base64Data}`;
+                        
+                        imgElement.src = imageUrl;
+                        imgElement.alt = prompt;
+                        imgElement.classList.remove('hidden');
+                        imgElement.classList.add('animate-fadeIn');
+                    } else {
+                        console.error('Generowanie obrazu nie powiodło się: Brak danych predykcyjnych.');
+                        // Fallback w przypadku braku danych
+                        imgElement.src = 'https://placehold.co/400x300/6b7280/ffffff?text=B%C5%82%C4%85d+Generowania';
+                        imgElement.classList.remove('hidden');
+                    }
+                } else {
+                     // Obsługa błędu, jeśli odpowiedź nie jest OK po retries
+                    console.error('Błąd generowania obrazu: Nieudana odpowiedź API.');
+                    imgElement.src = 'https://placehold.co/400x300/6b7280/ffffff?text=B%C5%82%C4%85d+API';
+                    imgElement.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error('Błąd przetwarzania odpowiedzi obrazu:', error);
+                // Fallback w przypadku błędu JSON/przetwarzania
+                imgElement.src = 'https://placehold.co/400x300/6b7280/ffffff?text=B%C5%82%C4%85d+Przetwarzania';
+                imgElement.classList.remove('hidden');
+            } finally {
+                // Ukryj spinner
+                spinnerElement.classList.add('hidden');
+            }
+        }
+        
+        // --- Funkcje nawigacyjne i ogólne ---
+
+        // Funkcja do płynnego przewijania
+        function scrollToSection(id) {
+            const targetSection = document.getElementById(id);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Logika menu mobilnego
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        function toggleMenu() {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden', !isHidden);
+            iconClose.classList.toggle('hidden', isHidden);
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+
+        function scrollToSectionAndClose(id) {
+            scrollToSection(id);
+            setTimeout(toggleMenu, 300); 
+        }
+
+        // Uruchomienie generowania obrazów po załadowaniu strony
+        window.onload = function() {
+            // Generowanie obrazu dla Terapii Bólu
+            generateImage(
+                "A professional male massage therapist, Caucasian, focused on performing deep tissue manual therapy on a client's back in a clean, modern clinic room. Medical lighting. Highly realistic, cinematic style.", 
+                'therapy-image'
+            );
+            
+            // Generowanie obrazu dla Regeneracji i Estetyki
+            generateImage(
+                "A professional male massage therapist, Caucasian, gently applying warm essential oils to a client's shoulder during a luxurious, relaxing massage. Dimly lit room with amber tones and candles, emphasizing calmness and luxury. Highly realistic, cinematic style.", 
+                'relaxation-image'
+            );
+
+            // Generowanie obrazu profilowego dla sekcji O Mnie
+            generateImage(
+                "A professional male massage therapist, Caucasian, focused on performing deep tissue manual therapy on a client's back in a clean, modern clinic room. Medical lighting. Highly realistic, close up, cinematic style.", 
+                'profile-image'
+            );
+        };
+    </script>
+</body>
+</html>
