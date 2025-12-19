@@ -6,18 +6,20 @@ body {
 }
 
 /* NAJWAŻNIEJSZA POPRAWKA:
-   Używamy selektora html body przed klasą, aby nadać mu wyższy priorytet niż style inline/internal.
-   Wymuszamy kolor złoty jako bazowy, aby napis nigdy nie był przeźroczysty, jeśli gradient zawiedzie.
+   Używamy potrójnego selektora, aby przebić się przez style Tailwinda i internal CSS.
+   Domyślnie ustawiamy kolor złoty, aby tekst był widoczny NAWET jeśli gradient nie zadziała.
 */
 html body .gold-gradient-bg {
   color: #D4AF37 !important;
   -webkit-text-fill-color: #D4AF37 !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
   opacity: 1 !important;
   visibility: visible !important;
   display: inline-block !important;
 }
 
-/* Obsługa gradientu tylko dla przeglądarek, które go wspierają i tylko na dużych ekranach */
+/* Obsługa gradientu TYLKO dla urządzeń stacjonarnych (szerokość powyżej 768px) */
 @media (min-width: 769px) {
   @supports (-webkit-background-clip: text) or (background-clip: text) {
     html body .gold-gradient-bg {
@@ -30,17 +32,22 @@ html body .gold-gradient-bg {
   }
 }
 
-/* Bezwarunkowe wymuszenie złota na telefonach - usuwamy przeźroczystość */
+/* BLOKADA DLA MOBILI:
+   Na telefonach całkowicie rezygnujemy z efektów przeźroczystości, 
+   które Safari i Chrome Mobile często interpretują jako "ukryj tekst".
+*/
 @media (max-width: 768px) {
   html body .gold-gradient-bg {
     background: none !important;
     -webkit-text-fill-color: #D4AF37 !important;
     color: #D4AF37 !important;
     background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    display: block !important; /* Wymuszenie odświeżenia elementu */
   }
 }
 
 /* Styl dla czcionki nagłówka */
 .content-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif !important;
 }
