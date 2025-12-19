@@ -5,28 +5,34 @@ body {
   padding-top: 100px; /* Miejsce na menu nawigacyjne */
 }
 
-/* 1. Podstawowy kolor dla gradientu (Fallback) */
-/* Dodajemy !important, aby na pewno nadpisać style z tagu <style> w HTML */
-.gold-gradient-bg {
-  color: #D4AF37 !important; 
+/* NAJWAŻNIEJSZA POPRAWKA:
+   Używamy selektora html body przed klasą, aby nadać mu wyższy priorytet niż style inline/internal.
+   Wymuszamy kolor złoty jako bazowy, aby napis nigdy nie był przeźroczysty, jeśli gradient zawiedzie.
+*/
+html body .gold-gradient-bg {
+  color: #D4AF37 !important;
+  -webkit-text-fill-color: #D4AF37 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
 }
 
-/* 2. Obsługa gradientu dla przeglądarek, które go wspierają (głównie desktop) */
-@supports (-webkit-background-clip: text) or (background-clip: text) {
-  .gold-gradient-bg {
-    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    color: transparent !important;
-    display: inline-block;
+/* Obsługa gradientu tylko dla przeglądarek, które go wspierają i tylko na dużych ekranach */
+@media (min-width: 769px) {
+  @supports (-webkit-background-clip: text) or (background-clip: text) {
+    html body .gold-gradient-bg {
+      background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: transparent !important;
+    }
   }
 }
 
-/* 3. KLUCZOWA ZMIANA: Bezwarunkowe wymuszenie widoczności na telefonach */
-/* Na małych ekranach rezygnujemy z gradientu na rzecz 100% widoczności */
+/* Bezwarunkowe wymuszenie złota na telefonach - usuwamy przeźroczystość */
 @media (max-width: 768px) {
-  .gold-gradient-bg {
+  html body .gold-gradient-bg {
     background: none !important;
     -webkit-text-fill-color: #D4AF37 !important;
     color: #D4AF37 !important;
