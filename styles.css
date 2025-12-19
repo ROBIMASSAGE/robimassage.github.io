@@ -6,23 +6,25 @@ body {
 }
 
 /* 1. Podstawowy kolor dla gradientu (Fallback) */
+/* Dodajemy !important, aby na pewno nadpisać style z tagu <style> w HTML */
 .gold-gradient-bg {
-  color: #D4AF37; /* Standardowe złoto, jeśli gradient nie zadziała */
+  color: #D4AF37 !important; 
 }
 
-/* 2. Obsługa gradientu dla przeglądarek, które go wspierają */
+/* 2. Obsługa gradientu dla przeglądarek, które go wspierają (głównie desktop) */
 @supports (-webkit-background-clip: text) or (background-clip: text) {
   .gold-gradient-bg {
-    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    display: inline-block; /* Ważne dla poprawnego wycinania tła */
+    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    display: inline-block;
   }
 }
 
-/* 3. KLUCZOWA ZMIANA: Wymuszenie widoczności na telefonach */
+/* 3. KLUCZOWA ZMIANA: Bezwarunkowe wymuszenie widoczności na telefonach */
+/* Na małych ekranach rezygnujemy z gradientu na rzecz 100% widoczności */
 @media (max-width: 768px) {
   .gold-gradient-bg {
     background: none !important;
@@ -32,7 +34,7 @@ body {
   }
 }
 
-/* Opcjonalnie: Styl dla czcionki nagłówka, jeśli nie masz go w HTML */
+/* Styl dla czcionki nagłówka */
 .content-heading {
   font-family: 'Playfair Display', serif;
 }
