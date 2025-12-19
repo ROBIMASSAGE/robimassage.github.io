@@ -3,687 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBI MASSAGE - Twoja Droga do Uwolnienia od Bólu i Napięcia</title>
-    <!-- Ładowanie Tailwind CSS -->
+    <title>ROBIMASSAGE – Profesjonalne Terapie</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Jasne kolory akcentujące dla lepszego kontrastu na ciemnym tle
-                        'primary-blue': '#60A5FA', // Jaśniejszy niebieski - dla KONTAKTU
-                        'secondary-gold': '#FBBF24', // Złoty/żółty - użyty dla tytułu i przycisków
-                        'bg-dark': '#111827', // Bardzo ciemne tło
-                        'card-dark': '#1F2937', // Tło dla kart/sekcji/nawigacji
-                        'text-light': '#F9FAFB', // Jasny tekst
-                        'accent-green': '#34D399', // Dla wyróżnienia elementów
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        // Dodanie czcionki Serif (domyślnie 'Georgia' lub podobna) dla ozdoby
-                        serif: ['Georgia', 'serif'], 
-                    },
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Styl dla czcionki Inter i ogólne cieniowanie w trybie ciemnym */
+        html { scroll-behavior: smooth; }
+        
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --black: #050505;
+            --black-soft: #121212;
+        }
+
         body {
+            background-color: var(--black);
+            color: #E5E7EB;
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Użycie bg-dark */
-            /* Dodatkowe miejsce na górze, aby treść nie chowała się pod stałym menu */
-            padding-top: 4rem; /* Odpowiednik wysokości nav + trochę marginesu */
-        }
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        /* Złota linia pod tytułami sekcji */
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 70%;
-            height: 3px;
-            background-color: #FBBF24; /* Złota linia */
-            border-radius: 9999px;
-        }
-        /* Styl dla logo tekstowego */
-        .logo-text {
-            /* Dodatkowe cieniowanie dla efektu 'złota' */
-            text-shadow: 0 0 8px rgba(251, 191, 36, 0.6), 0 0 15px rgba(251, 191, 36, 0.3);
-        }
-        /* Styl dla placeholderów zdjęć */
-        .image-placeholder {
-            min-height: 250px;
-            background-color: #1F2937;
-            border-style: dashed;
-            border-color: #4B5563;
+            margin: 0;
+            padding-top: 100px;
         }
 
-        /* Styl dla złotych przycisków w menu */
-        .gold-button {
-            background-color: #FBBF24; /* secondary-gold */
-            color: #111827; /* bg-dark */
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s;
+        .navbar-custom {
+            background-color: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-button {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: white;
+            padding: 4px 6px;
             text-align: center;
-        }
-        .gold-button:hover {
-            background-color: #eab308; /* Ciemniejszy złoty */
-            color: #000000;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            border-radius: 4px;
+            height: 48px;
+            width: 100%;
+            max-width: 120px;
         }
 
-        /* Styl dla niebieskiego przycisku KONTAKT REZERWACJA */
-        .blue-button {
-            background-color: #60A5FA; /* primary-blue */
-            color: #F9FAFB; /* text-light */
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(96, 165, 250, 0.5); /* Niebieski cień */
+        .nav-button:hover {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-        .blue-button:hover {
-            background-color: #3b82f6; /* Ciemniejszy niebieski */
-            color: #FFFFFF;
-            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.7);
+
+        .nav-button.brand {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: black;
+            font-weight: 800;
+            border: none;
+        }
+
+        .gold-text { color: var(--gold); }
+        .gold-gradient-bg {
+            background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-padding {
+            padding: 4rem 1.5rem;
+        }
+        @media (min-width: 1024px) {
+            .section-padding { padding: 6rem 8rem; }
+        }
+
+        .card {
+            background: linear-gradient(145deg, #0F0F0F, #161616);
+            /* Ramka widoczna cały czas */
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            /* Efekt tafli szkła i poświaty */
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(8px);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .benefit-tag {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: auto;
+            padding-top: 1rem;
+            display: block;
+        }
+
+        .solution-tag {
+            color: #D1D5DB;
+            font-size: 0.95rem;
+            margin-top: 0.75rem;
+            display: block;
+            line-height: 1.5;
+        }
+
+        .content-heading {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Styl kontenera na zdjęcia sekcji */
+        .section-image-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            object-fit: cover;
+            max-height: 400px;
         }
     </style>
 </head>
-<body class="antialiased text-text-light bg-bg-dark">
+<body>
 
-    <!-- NAWIGACJA (Menu Główne) - Stałe na górze strony -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-card-dark bg-opacity-95 shadow-2xl backdrop-blur-sm h-16 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="flex items-center justify-between">
-                <!-- Logo/Brand (Zmniejszenie czcionki na text-lg) -->
-                <div class="flex-shrink-0">
-                    <a href="#start" class="text-lg font-bold text-secondary-gold hover:text-primary-blue transition">ROBI MASSAGE</a>
-                </div>
-                
-                <!-- Desktop Menu: Użycie nowych klas .gold-button i .blue-button -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-3 lg:space-x-5 text-sm font-semibold">
-                        <!-- Złote Przyciski -->
-                        <a href="#bol" class="gold-button uppercase">BÓL I NAPIĘCIA</a>
-                        <a href="#regeneracja" class="gold-button uppercase">ANTY-STRES</a>
-                        <a href="#twarz" class="gold-button uppercase">TWARZ I CZASZKA</a>
-                        <a href="#holistyka" class="gold-button uppercase">PODEJŚCIE HOLISTYCZNE</a>
-                        <a href="#zabiegi" class="gold-button uppercase">TECHNIKI I ZABIEGI</a>
-                        <a href="#pasja" class="gold-button uppercase">O MNIE</a>
-                        <!-- Niebieski Przycisk KONTAKT REZERWACJA -->
-                        <a href="#kontakt" class="blue-button uppercase">KONTAKT REZERWACJA</a>
-                    </div>
-                </div>
-                
-                <!-- Mobile Menu Button (Hamburger) -->
-                <div class="md:hidden">
-                    <button id="menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-text-light hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-primary-blue" aria-controls="mobile-menu" aria-expanded="false">
-                        <!-- Ikona Hamburger -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <!-- Ikona Zamknij (ukryta domyślnie) -->
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+    <!-- GŁÓWNE MENU -->
+    <nav class="navbar-custom fixed top-0 left-0 w-full z-50">
+        <div class="max-w-[1400px] mx-auto px-4 py-3">
+            <div class="hidden lg:flex justify-center gap-2">
+                <a href="#home" class="nav-button brand">ROBIMASSAGE</a>
+                <a href="#bol" class="nav-button">Ból i<br>Napięcia</a>
+                <a href="#anty-stres" class="nav-button">Anty-stres i<br>Regeneracja</a>
+                <a href="#twarz" class="nav-button">Twarz i<br>Czaszka</a>
+                <a href="#holistycznie" class="nav-button">Wsparcie<br>Holistyczne</a>
+                <a href="#techniki" class="nav-button">Zabiegi i<br>Techniki</a>
+                <a href="#o-mnie" class="nav-button">Moja<br>Pasja</a>
+                <a href="#kontakt" class="nav-button">Kontakt</a>
+            </div>
+
+            <div class="lg:hidden flex justify-between items-center px-2">
+                <a href="#home" class="text-gold font-bold text-xl gold-gradient-bg">ROBIMASSAGE</a>
+                <button id="mobile-toggle" class="text-gold">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Menu, show/hide based on menu state. -->
-        <div class="md:hidden hidden absolute top-16 w-full bg-card-dark shadow-xl pb-2" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-base">
-                <!-- Zmienione na duże litery i dodane tło -->
-                <a href="#bol" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">1. BÓL I NAPIĘCIA</a>
-                <a href="#regeneracja" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">2. ANTY-STRES</a>
-                <a href="#twarz" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">3. TWARZ I CZASZKA</a>
-                <a href="#holistyka" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">4. PODEJŚCIE HOLISTYCZNE</a>
-                <a href="#zabiegi" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">5. TECHNIKI I ZABIEGI</a>
-                <a href="#pasja" class="text-secondary-gold hover:bg-gray-700 hover:text-text-light block px-3 py-2 rounded-md uppercase font-bold">O MNIE</a>
-                <a href="#kontakt" class="text-primary-blue hover:bg-gray-700 block px-3 py-2 rounded-md font-extrabold uppercase">KONTAKT REZERWACJA</a>
-            </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-black-soft border-t border-gold/20 p-4 space-y-2">
+            <a href="#bol" class="nav-button !max-w-none">Przewlekły Ból i Napięcia</a>
+            <a href="#anty-stres" class="nav-button !max-w-none">Terapie Anty-Stresowe</a>
+            <a href="#twarz" class="nav-button !max-w-none">Terapie Twarzy i Czaszki</a>
+            <a href="#holistycznie" class="nav-button !max-w-none">Holistyczne Wsparcie</a>
+            <a href="#techniki" class="nav-button !max-w-none">Konkretne Zabiegi</a>
+            <a href="#o-mnie" class="nav-button !max-w-none">O mnie</a>
+            <a href="#kontakt" class="nav-button !max-w-none">Kontakt</a>
         </div>
     </nav>
-    <!-- Koniec NAWIGACJI -->
-    
-    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-        
-        <!-- Nowy Top Header - ROBI MASSAGE (Wyśrodkowany, Ozdobny) -->
-        <div class="text-center mb-6 pt-4">
-            <h1 id="start" class="logo-text text-secondary-gold text-5xl sm:text-6xl font-serif font-extrabold italic tracking-widest leading-none">
-                ROBI MASSAGE
-            </h1>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="section-padding text-center bg-black relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold rounded-full blur-[120px]"></div>
         </div>
-        
-        <!-- ZDJĘCIE WNĘTRZA GABINETU - MIEJSCE NA ZDJĘCIE -->
-        <div class="mb-12 rounded-xl overflow-hidden shadow-2xl bg-card-dark border-4 border-gray-700">
-            <!-- Pamiętaj, aby zastąpić ten tag <img> własnym obrazem, gdy będziesz gotów. -->
-            <img 
-                src="/robimassage0.jpg" 
-                alt="Wnętrze Gabinetu - Miejsce Relaksu. Proszę podmienić URL na właściwe zdjęcie wnętrza gabinetu." 
-                class="w-full h-auto object-cover opacity-90 image-placeholder flex items-center justify-center"
-                onerror="this.onerror=null; this.src='https://placehold.co/1200x500/1F2937/FBBF24?text=WSTAW+TUTAJ+ZDJĘCIE+GABINETU'"
-            >
-        </div>
-        <!-- KONIEC ZDJĘCIA WNĘTRZA -->
+        <h1 class="text-4xl md:text-6xl font-bold gold-gradient-bg mb-4 content-heading">
+            ROBIMASSAGE<br><span class="text-sm md:text-lg font-normal tracking-widest opacity-80 uppercase block mt-2 mb-12">Twoja Droga do Uwolnienia od Bólu i Napięcia</span>
+        </h1>
+    </header>
 
-        <!-- Nagłówek i Wprowadzenie - Główny tytuł i opis -->
-        <header class="mb-12 py-8 bg-card-dark rounded-xl shadow-2xl">
-            <div class="text-center px-4 sm:px-8">
-                <!-- Główny Tytuł (Złoty Kolor) -->
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-secondary-gold mb-2 leading-tight">
-                    Twoja Droga do Uwolnienia od Bólu i Napięcia
-                </h2>
-            </div>
-        </header>
-
-        <!-- 1. Przewlekły Ból i Napięcia Mięśniowo-Powięziowe -->
-        <section id="bol" class="mb-16">
-            <!-- Placeholder na zdjęcie dla sekcji 1 -->
-            <div class="mb-6 h-48 w-full rounded-xl shadow-inner flex items-center justify-center image-placeholder border-2">
-                <img src="/robimassage1.jpg" alt="Placeholder na zdjęcie dla sekcji: Ból i Napięcia" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/1F2937/60A5FA?text=1.+ZDJĘCIE+DLA+SEKCJI+BÓL+I+NAPIĘCIA'">
-            </div>
-            <h2 class="section-title text-3xl font-bold text-text-light mb-8">1. Przewlekły Ból i Napięcia Mięśniowo-Powięziowe</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                <span class="font-bold text-primary-blue">Usługi skierowane są do osób:</span> z długotrwałym dyskomfortem, ograniczoną ruchomością, oraz powracającym bólem, który utrudnia codzienne funkcjonowanie.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Rwa kulszowa -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Rwa kulszowa, dyskopatia (wypadający dysk)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Terapia manualnego uwalniania powięziowego (specyficzne techniki na ból pleców), wsparta Manipulacjami Krótkodźwigniowymi (HVLA) w celu szybkiej mobilizacji stawów kręgosłupa. Wsparcie autoterapią nerwu błędnego dla relaksacji głębokiej.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Natychmiastowa ulga w ostrym i promieniującym bólu, przywrócenie pełnego zakresu ruchu.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Migreny -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Migreny, bóle napięciowe głowy i sztywność karku</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Specjalistyczna terapia powięziowa głowy, szyi i obręczy barkowej (celowanie w przyczynę napięciowych bólów). Nauka technik relaksacyjnych wpływających na nerw błędnego.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Znaczące zmniejszenie częstotliwości i intensywności ataków migrenowych i napięciowych.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Ból w obrębie miednicy -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Ból w obrębie miednicy, problemy z pośladkami</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Precyzyjne techniki uwalniania powięziowego miednicy oraz terapia bólu pleców. Praca nad mięśniami dna miednicy i wpływem emocji na ten obszar.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Poprawa stabilizacji, zmniejszenie dyskomfortu związanego z długim siedzeniem lub staniem.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Zespół cieśni nadgarstka -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Zespół cieśni nadgarstka, ból promieniujący do rąk</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Uwalnianie powięziowe w połączeniu ze stretchingiem powięziowym obręczy barkowej. Przywracanie optymalnej pracy i eliminacja bólu promieniującego z ramion i szyi.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Pełna swoboda ruchu w dłoniach i ramionach, redukcja mrowienia.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Terapie Anty-Stresowe i Regeneracyjne -->
-        <section id="regeneracja" class="mb-16">
-            <!-- Placeholder na zdjęcie dla sekcji 2 -->
-            <div class="mb-6 h-48 w-full rounded-xl shadow-inner flex items-center justify-center image-placeholder border-2">
-                <img src="/robimassage2.jpg" alt="Placeholder na zdjęcie dla sekcji: Relaks i Regeneracja" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/1F2937/60A5FA?text=2.+ZDJĘCIE+DLA+SEKCJI+ANTY-STRES'">
-            </div>
-            <h2 class="section-title text-3xl font-bold text-text-light mb-8">2. Terapie Anty-Stresowe i Regeneracyjne</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                <span class="font-bold text-primary-blue">Usługi dedykowane osobom:</span> narażonym na wysoki poziom stresu, przemęczenie, szukającym głębokiego odprężenia i wzmocnienia odporności.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Długotrwały stres -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Długotrwały stres, poczucie wyczerpania</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Masaż na stres (techniki powięziowe i praca z oddechem). Sesje ukierunkowane na obniżanie napięcia układu nerwowego poprzez autoterapię nerwu błędnego.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Głębokie wyciszenie, poprawa jakości snu i lepsza kontrola emocji.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Luksusowe odprężenie -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Luksusowe odprężenie i potrzeba głębokiego relaksu zmysłowego</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Klasyczny Masaż Relaksacyjny (ze świecą/ciepłym olejem). Pełne wyciszenie umysłu i ciała, redukcja napięć mięśniowych powstałych na tle stresowym.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Błyskawiczna regeneracja, poczucie dobrostanu i poprawa nastroju.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Słaba odporność -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Słaba odporność, częste infekcje (wsparcie w przeziębieniu)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Terapia bańkami ogniowymi (techniki bankowania) wzmacniająca odporność i redukująca ból mięśni. Wspomaganie procesów regeneracyjnych.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Stymulacja układu odpornościowego, redukcja bólu i przyspieszenie powrotu do zdrowia.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Krótki oddech -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Uczucie "krótkiego oddechu", płytki oddech</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Terapia manualnego uwalniania powięziowego klatki piersiowej i przepony (specjalizacja w terapii oddechu). Optymalizacja mechaniki oddechowej.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Poprawa pojemności płuc, lepsze dotlenienie organizmu i redukcja lęku.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Terapie Twarzy i Czaszki (Uroda i Eliminacja Napięć) -->
-        <section id="twarz" class="mb-16">
-            <!-- Placeholder na zdjęcie dla sekcji 3 -->
-            <div class="mb-6 h-48 w-full rounded-xl shadow-inner flex items-center justify-center image-placeholder border-2">
-                <img src="/robimassage3.jpg" alt="Placeholder na zdjęcie dla sekcji: Terapia Twarzy i Czaszki" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/1F2937/60A5FA?text=3.+ZDJĘCIE+DLA+SEKCJI+TWARZ+I+CZASZKA'">
-            </div>
-            <h2 class="section-title text-3xl font-bold text-text-light mb-8">3. Terapie Twarzy i Czaszki (Uroda i Eliminacja Napięć)</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                <span class="font-bold text-primary-blue">Usługi dla osób:</span> poszukujących efektu liftingu bez skalpela, eliminacji napięć na twarzy oraz rozwiązań estetycznych dla skóry.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Naturalny Lifting -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Zmarszczki, utrata jędrności, opadający owal twarzy (Naturalny Lifting)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Japoński Masaż Twarzy Kobido (certyfikowana technika dynamiczna) w połączeniu z podejściem strukturalnym Zoga Face Integration (praca na głębokich mięśniach i powięziach twarzy).</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Spektakularny, bezinwazyjny lifting, poprawa owalu, redukcja obrzęków i promienny wygląd.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Bruksizm -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Napięcie w stawach skroniowo-żuchwowych, zgrzytanie zębami (bruksizm)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Zaawansowana terapia powięziowa twarzy i czaszki (elementy Zoga), głębokie uwalnianie napięć w obrębie głowy i szyi. Wsparcie Oczyszczaniem Wodorowym dla dotlenienia.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Uwolnienie od bólu, zmniejszenie problemu zaciskania i zgrzytania zębami.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Przebarwienia -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Przebarwienia, niejednolity koloryt, drobne blizny potrądzikowe</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Specjalistyczne zabiegi laserowe: Laser Pikosekundowy (celowanie w pigmentację i stymulacja kolagenu) połączone z Peelingiem Kawitacyjnym i Krioterapią (chłodzenie) w celu obkurczenia porów i złuszczenia.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Skuteczna eliminacja przebarwień i widoczne wyrównanie tekstury skóry bez długiej rekonwalescencji.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Głębokie oczyszczanie -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Potrzeba głębokiego oczyszczenia i regeneracji skóry</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Oczyszczanie Wodorowe (Hydrogen) połączone ze stymulacją prądami TENS, Mikrodermabrazją ultradźwiękową oraz Maską LED w celu intensywnej regeneracji na poziomie komórkowym.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Natychmiastowe odświeżenie, głębokie oczyszczenie porów, poprawa wchłaniania składników aktywnych i łagodzenie stanów zapalnych.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Holistyczne Wsparcie Terapii Bólu i Pielęgnacji Ciała -->
-        <section id="holistyka" class="mb-16">
-            <!-- Placeholder na zdjęcie dla sekcji 4 -->
-            <div class="mb-6 h-48 w-full rounded-xl shadow-inner flex items-center justify-center image-placeholder border-2">
-                <img src="/robimassage4.jpg" alt="Placeholder na zdjęcie dla sekcji: Podejście Holistyczne" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/1F2937/60A5FA?text=4.+ZDJĘCIE+DLA+SEKCJI+PODEJŚCIE+HOLISTYCZNE'">
-            </div>
-            <h2 class="section-title text-3xl font-bold text-text-light mb-8">4. Podejście Holistyczne</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                <span class="font-bold text-primary-blue">Usługi dla osób:</span> u których masaż sam w sobie nie przynosi trwałej ulgi, a ból ma charakter przewlekły lub psychosomatyczny, oraz dla osób szukających trwałych rozwiązań do pielęgnacji ciała.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Przewlekły ból -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Przewlekły ból (bez konkretnej diagnozy)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Program oparty na module "Zrozum Ból". Analiza wpływu układu limbicznego i czynników nasilających ból. Konsultacja dotycząca przeciwbólowej diety oraz wpływu jelit na mięśnie.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Zrozumienie mechanizmów własnego bólu i otrzymanie narzędzi do długotrwałego zarządzania dyskomfortem.</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Ból a stres -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Ból związany ze stanami zapalnymi i odczuwanym stresem</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Terapia bólu przez skórę połączona z pracą powięziową nad modułem "Wpływ emocji na ciało". Nauka technik relaksacji świadomego ciała. Wsparcie Krioterapią (chłodzeniem) dla redukcji lokalnych stanów zapalnych.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Uwolnienie napięć somatycznych powstałych na tle emocjonalnym i psychologicznym.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Blizny -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Blizny – redukcja widoczności i dyskomfortu po operacjach/kontuzjach</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Specjalistyczna terapia blizn (uwalnianie powięziowe a terapia bólu). Protokół Dynamicznego stretchingu powięziowego wspierający mobilność. Laser pikosekundowy do przebudowy struktury blizny i redukcji pigmentacji.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Przyspieszenie regeneracji tkanek, zmniejszenie zrostów i poprawa estetyki blizny.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Depilacja -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-blue">
-                    <h4 class="text-xl font-extrabold text-text-light mb-3">Niechciane owłosienie na ciele (trwała redukcja)</h4>
-                    <ul class="space-y-4 ml-3 border-l-2 border-gray-700 pl-4 pt-2">
-                        <li>
-                            <p class="font-semibold text-primary-blue">Rozwiązanie:</p>
-                            <p class="text-gray-300">Laserowa Depilacja Estetyczna (skuteczny laser diodowy). Zapewniam najwyższy standard higieny i pełną dyskrecję.</p>
-                        </li>
-                        <li class="p-3 bg-blue-900/50 rounded-lg">
-                            <p class="font-semibold text-secondary-gold">Korzyść:</p>
-                            <p class="text-text-light font-medium">Trwała, bezpieczna i komfortowa eliminacja niechcianego owłosienia.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Konkretne Zabiegi i Certyfikowane Techniki -->
-        <section id="zabiegi" class="mb-16">
-            <!-- Placeholder na zdjęcie dla sekcji 5 -->
-            <div class="mb-6 h-48 w-full rounded-xl shadow-inner flex items-center justify-center image-placeholder border-2">
-                <img src="/robimassage5.jpg" alt="Placeholder na zdjęcie dla sekcji: Certyfikowane Techniki" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/1F2937/60A5FA?text=5.+ZDJĘCIE+DLA+SEKCJI+TECHNIKI+I+ZABIEGI'">
-            </div>
-            <h2 class="section-title text-3xl font-bold text-text-light mb-8">5. Konkretne Zabiegi i Certyfikowane Techniki</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                <span class="font-bold text-primary-blue">Lista:</span> konkretnych, certyfikowanych technik manualnych i zaawansowanych technologii, które stosuję.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Oczyszczanie Wodorowe -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Oczyszczanie Wodorowe (Hydrogen Facial)</h4>
-                    <p class="text-gray-300 mt-2">Zabieg polegający na głębokim oczyszczaniu skóry cząsteczkami aktywnego wodoru. Neutralizuje wolne rodniki, dotlenia i rewitalizuje skórę.</p>
-                </div>
-
-                <!-- Peeling Kawitacyjny -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Peeling Kawitacyjny (Ultrasonic Peeling)</h4>
-                    <p class="text-gray-300 mt-2">Bezbolesne złuszczanie martwego naskórka za pomocą ultradźwięków, przygotowujące skórę do lepszego wchłaniania substancji aktywnych.</p>
-                </div>
-
-                <!-- Maska LED -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Maska LED (Fototerapia)</h4>
-                    <p class="text-gray-300 mt-2">Terapia światłem o różnych długościach fali (kolorach) wykorzystywana do stymulacji kolagenu, redukcji stanów zapalnych i przyspieszenia regeneracji skóry.</p>
-                </div>
-                
-                <!-- Mikrodermabrazja Ultradźwiękowa & Tlenoterapia -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Mikrodermabrazja Ultradźwiękowa & Tlenoterapia</h4>
-                    <p class="text-gray-300 mt-2">Kompleksowy zabieg na twarz: głębokie oczyszczanie skóry ultradźwiękami, połączone z natlenianiem (infuzja tlenowa) i stymulacją elektryczną.</p>
-                </div>
-
-                <!-- Krioterapia i Elektrostymulacja -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Krioterapia i Elektrostymulacja</h4>
-                    <p class="text-gray-300 mt-2">Wykorzystanie chłodzenia do obkurczenia porów i redukcji stanów zapalnych (Krioterapia) oraz prądów TENS do stymulacji mięśni i poprawy krążenia.</p>
-                </div>
-
-                <!-- Laser Pikosekundowy -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Laser Pikosekundowy</h4>
-                    <p class="text-gray-300 mt-2">Najnowsza technologia do redukcji przebarwień, usuwania tatuaży i trwałej rewitalizacji skóry. Działa w ultraszybkich impulsach, minimalizując uszkodzenia termiczne.</p>
-                </div>
-
-                <!-- Laserowa Depilacja -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Laserowa Depilacja</h4>
-                    <p class="text-gray-300 mt-2">Trwała i skuteczna metoda usuwania niechcianego owłosienia. Zapewniam maksymalny komfort i bezpieczeństwo zabiegu.</p>
-                </div>
-                
-                <!-- Manualne Uwalnianie Powięziowe -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Manualne Uwalnianie Powięziowe</h4>
-                    <p class="text-gray-300 mt-2">Głęboka praca manualna z tkankami, mająca na celu przywrócenie elastyczności powięzi, redukcję napięć mięśniowych i uwolnienie od bólu, szczególnie w obszarze pleców, głowy i miednicy. Podstawa do terapii bólu przewlekłego.</p>
-                </div>
-                
-                <!-- Manipulacje Krótkodźwigniowe (HVLA) -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Manipulacje Krótkodźwigniowe (HVLA)</h4>
-                    <p class="text-gray-300 mt-2">Technika mobilizacji stawów kręgosłupa i obwodowych. Szybkie, precyzyjne i bezpieczne impulsy mające na celu przywrócenie prawidłowego zakresu ruchu i natychmiastową ulgę w bólu.</p>
-                </div>
-                
-                <!-- Japoński Masaż Twarzy Kobido -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Japoński Masaż Twarzy Kobido</h4>
-                    <p class="text-gray-300 mt-2">Rytualny, dynamiczny masaż liftingujący. Pracuje na głębokich strukturach skóry, mięśniach i punktach akupresurowych, dając efekt naturalnej korekty konturów twarzy i relaksu.</p>
-                </div>
-
-                 <!-- Masaż Relaksacyjny (Świeca/Ciepły Olej) -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Masaż Relaksacyjny (Świeca/Ciepły Olej)</h4>
-                    <p class="text-gray-300 mt-2">Klasyczna forma masażu o działaniu głęboko odprężającym, prowadzona z użyciem świecy lub ciepłego, aromatycznego oleju. Idealny na wyciszenie i redukcję ogólnego napięcia psychofizycznego.</p>
-                </div>
-                
-                <!-- Specjalistyczna Terapia Blizn -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Specjalistyczna Terapia Blizn</h4>
-                    <p class="text-gray-300 mt-2">Wykorzystanie technik uwalniania powięziowego oraz protokołów stymulacji gojenia ran, aby zmniejszyć zrosty, poprawić elastyczność i zredukować ból związany z blizną.</p>
-                </div>
-
-                <!-- Autoterapia Nerwu Błędnego -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Autoterapia Nerwu Błędnego</h4>
-                    <p class="text-gray-300 mt-2">Nauka i wykonanie ćwiczeń relaksacyjnych ukierunkowanych na autonomiczny układ nerwowy. Pomocne w redukcji bólu pleców, stanów lękowych i przewlekłego napięcia.</p>
-                </div>
-
-                <!-- Terapia Bólu przez Skórę -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Terapia Bólu przez Skórę</h4>
-                    <p class="text-gray-300 mt-2">Zastosowanie wiedzy z zakresu fizjologii skóry do optymalizacji procesów przeciwbólowych organizmu, często jako wsparcie dla terapii manualnej.</p>
-                </div>
-
-                <!-- Wsparcie Dietetyczne Przeciwbólowe -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Wsparcie Dietetyczne Przeciwbólowe</h4>
-                    <p class="text-gray-300 mt-2">Indywidualne konsultacje dotyczące diety, mającej na celu zmniejszenie stanów zapalnych w organizmie, co jest kluczowe w walce z przewlekłym bólem mięśniowo-powięziowym.</p>
-                </div>
-
-                <!-- Bańki Ogniowe (Terapia Wzmacniająca) -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Bańki Ogniowe (Terapia Wzmacniająca)</h4>
-                    <p class="text-gray-300 mt-2">Tradycyjna technika używana do wzmacniania odporności, redukcji lokalnego bólu i wspomagania w stanach przeziębienia poprzez stymulację krążenia.</p>
-                </div>
-
-                <!-- Zoga Face Integration -->
-                <div class="p-6 bg-card-dark rounded-xl shadow-lg border-t-4 border-secondary-gold">
-                    <h4 class="text-xl font-extrabold text-primary-blue mb-2">Zoga Face Integration</h4>
-                    <p class="text-gray-300 mt-2">Holistyczne podejście do pracy z tkankami miękkimi twarzy, dające strukturalne wsparcie dla efektu liftingu i redukcji napięć szczękowo-żuchwowych.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ZINTEGROWANA SEKCA: MOJA PASJA. MOJA DROGA. -->
-        <section id="pasja" class="mb-16 mt-16 p-8 bg-card-dark rounded-xl shadow-2xl border-t-4 border-primary-blue">
-            <h2 class="text-4xl font-extrabold text-secondary-gold mb-4 uppercase tracking-wider text-center">
-                MOJA PASJA
-            </h2>
-            
-            <!-- Wprowadzający tekst o gabinecie i personalizacji (przeniesiony z góry) -->
-            <div class="mb-8 p-4 rounded-lg border-l-4 border-secondary-gold bg-blue-900/10">
-                <p class="text-lg text-gray-300 leading-relaxed font-semibold">
-                    W moim jednoosobowym gabinecie masz pewność, że od pierwszej konsultacji do osiągnięcia celu terapeutycznego pracujesz zawsze z tą samą osobą. To gwarantuje pełną ciągłość terapii, najwyższy poziom personalizacji i maksymalne wykorzystanie wszystkich moich certyfikowanych technik, bez delegowania ani pośpiechu. Twoje zdrowie jest moim jedynym priorytetem w trakcie wizyty.
-                </p>
-                <p class="mt-4 text-lg font-semibold text-primary-blue">
-                    Oferuję elastyczne i spersonalizowane programy terapeutyczne, łączące wybrane zaawansowane techniki manualne, wiedzę dietetyczną i holistyczne podejście do przewlekłego bólu oraz zaawansowane technologie estetyczne. Nie oferuję pojedynczych zabiegów – oferuję rozwiązania.
-                </p>
-            </div>
-            <!-- Koniec Wprowadzającego tekstu -->
-
-            <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
-                <p>
-                    Moja droga do pomagania innym zaczęła się od osobistego doświadczenia. Kilka lat temu, po wypadku, sam zmagałem się z dyskomfortem i ograniczeniami. Pomoc uzyskałem od znajomej w podeszłym wieku, która swoją wiedzą i niezwykłymi umiejętnościami nastawiała zwichnięcia i przywracała kręgi na właściwe miejsce.
-                </p>
-                <p>
-                    To doświadczenie było punktem zwrotnym. Zdałem sobie sprawę, jak wielki potencjał leży w precyzyjnej pracy manualnej i że to jest właśnie droga, którą chcę podążać. Od tego czasu, obok mojej pełnoetatowej pracy, zacząłem intensywnie pogłębiać wiedzę. Studiowałem anatomię i brałem udział w ponad 10 kursach z zakresu zaawansowanych technik pomagania. Wszystkie wolne chwile, poza normalnym życiem i pracą, przeznaczam na samokształcenie i rozwijanie warsztatu.
-                </p>
-                <p>
-                    Efektem tej pasji i nieustającej nauki jest mój warsztat: miejsce, w którym nie stosuję sztywnych protokołów. Łączę różne metody – od uwalniania powięzi, przez terapie antystresowe i zaawansowaną estetykę – dopasowując je do konkretnej osoby i jej unikalnego przypadku. Twoje zdrowie i pełne odzyskanie sprawności są moim priorytetem.
-                </p>
-            </div>
-        </section>
-        <!-- KONIEC ZINTEGROWANEJ SEKCJI PASJA -->
-
-        <!-- Sekcja KONTAKT -->
-        <section id="kontakt" class="mb-16 mt-16 p-8 bg-card-dark rounded-xl shadow-2xl text-center border-t-4 border-secondary-gold">
-            <h2 class="text-4xl font-extrabold text-secondary-gold mb-4 uppercase tracking-wider">
-                Kontakt Rezerwacja
-            </h2>
-            <p class="text-xl text-gray-300 mb-2">
-                Telefon do rezerwacji terminu lub konsultacji:
-            </p>
-            <p class="text-5xl font-extrabold text-primary-blue logo-text">
-                <a href="tel:605593210" class="hover:text-secondary-gold transition duration-300">
-                    605 593 210
-                </a>
-            </p>
-            <p class="mt-4 text-sm text-gray-500">
-                (Proszę o kontakt telefoniczny w godzinach 8:00 - 20:00)
-            </p>
-        </section>
-
-        <!-- Stopka / Podsumowanie -->
-        <footer class="text-center py-6 bg-primary-blue text-text-light rounded-xl shadow-lg mt-12">
-            <p class="text-lg font-medium px-4">
-                PAMIĘTAJ: Moje usługi są zawsze dopasowane do Twoich potrzeb, tworząc unikalną, łączoną terapię, integrującą siłę terapii manualnej, zaawansowane technologie estetyczne, wiedzę o bólu i naturalne metody wsparcia.
-            </p>
-        </footer>
-
+    <!-- Zdjęcie przed Sekcją 1 -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage1.jpg" alt="[Zdjęcie sekcja 1]" onerror="this.parentElement.style.display='none'">
     </div>
 
-    <!-- Skrypt do obsługi mobilnego menu -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const button = document.getElementById('menu-button');
-            const menu = document.getElementById('mobile-menu');
-            const navLinks = menu.querySelectorAll('a');
-
-            button.addEventListener('click', () => {
-                const isExpanded = button.getAttribute('aria-expanded') === 'true' || false;
-                button.setAttribute('aria-expanded', !isExpanded);
-                menu.classList.toggle('hidden');
-                
-                // Zmiana ikon (hamburger/zamknij)
-                button.querySelector('svg:first-child').classList.toggle('hidden');
-                button.querySelector('svg:last-child').classList.toggle('hidden');
-            });
+    <!-- Sekcja 1 -->
+    <section id="bol" class="section-padding bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 gold-text uppercase">Przewlekły Ból i Napięcia Mięśniowo-Powięziowe</h2>
+            <p class="text-lg mb-10 text-gray-400 italic border-l-2 border-gold pl-4">Usługi skierowane są do osób z długotrwałym dyskomfortem, ograniczoną ruchomością, oraz powracającym bólem, który utrudnia codzienne funkcjonowanie.</p>
             
-            // Ukryj menu mobilne po kliknięciu linku (aby przeskoczyć do sekcji)
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                    button.setAttribute('aria-expanded', 'false');
-                    button.querySelector('svg:first-child').classList.remove('hidden');
-                    button.querySelector('svg:last-child').classList.add('hidden');
-                });
-            });
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Rwa kulszowa, dyskopatia (wypadający dysk)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Terapia manualnego uwalniania powięziowego (specyficzne techniki na ból pleców), wsparta Manipulacjami Krótkodźwigniowymi (HVLA) w celu szybkiej mobilizacji stawów kręgosłupa. Wsparcie autoterapią nerwu błędnego dla relaksacji głębokiej.</span>
+                    <span class="benefit-tag">Korzyść: Natychmiastowa ulga v ostrym i promieniującym bólu, przywrócenie pełnego zakresu ruchu.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Migreny, bóle napięciowe głowy i sztywność karku</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Specjalistyczna terapia powięziowa głowy, szyi i obręczy barkowej (celowanie v przyczynę napięciowych bólów). Nauka technik relaksacyjnych wpływających na nerw błędnego.</span>
+                    <span class="benefit-tag">Korzyść: Znaczące zmniejszenie częstotliwości i intensywności ataków migrenowych i napięciowych.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Ból v obrębie miednicy, problemy z pośladkami</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Precyzyjne techniki uwalniania powięziowego miednicy oraz terapia bólu pleców. Praca nad mięśniami dna miednicy i wpływem emocji na ten obszar.</span>
+                    <span class="benefit-tag">Korzyść: Poprawa stabilizacji, zmniejszenie dyskomfortu związanego z długim siedzeniem lub staniem.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Zespół cieśni nadgarstka, ból promieniujący do rąk</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Uwalnianie powięziowe v połączeniu ze stretchingiem powięziowym obręczy barkowej. Przywracanie optymalnej pracy i eliminacja bólu promieniującego z ramion i szyi.</span>
+                    <span class="benefit-tag">Korzyść: Pełna swoboda ruchu v dłoniach i ramionach, redukcja mrowienia.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zdjęcie przed Sekcją 2 -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage2.jpg" alt="[Zdjęcie sekcja 2]" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Sekcja 2 -->
+    <section id="anty-stres" class="section-padding bg-black-soft/30">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 gold-text uppercase">Terapie Anty-Stresowe i Regeneracyjne</h2>
+            <p class="text-lg mb-10 text-gray-400 italic border-l-2 border-gold pl-4">Usługi dedykowane osobom narażonym na wysoki poziom stresu, przemęczenie, szukającym głębokiego odprężenia i wzmocnienia odporności.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Długotrwały stres, poczucie wyczerpania</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Masaż na stres (techniki powięziowe i praca z oddechem). Sesje ukierunkowane na obniżanie napięcia układu nerwowego poprzez autoterapią nerwu błędnego.</span>
+                    <span class="benefit-tag">Korzyść: Głębokie wyciszenie, poprawa jakości snu i lepsza kontrola emocji.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Luksusowe odprężenie i potrzeba głębokiego relaksu zmysłowego</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Klasyczny Masaż Relaksacyjny (ze świecą/ciepłym olejem). Pełne wyciszenie umysłu i ciała, redukcja napięć mięśniowych powstałych na tle stresowym.</span>
+                    <span class="benefit-tag">Korzyść: Błyskawiczna regeneracja, poczucie dobrostanu i poprawa nastroju.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Słaba odporność, częste infekcje (wsparcie v przeziębieniu)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Terapia bańkami ogniowymi (techniki bankowania) wzmacniająca odporność i redukująca ból mięśni. Wspomaganie procesów regeneracyjnych.</span>
+                    <span class="benefit-tag">Korzyść: Stymulacja układu odpornościowego, redukcja bólu i przyspieszenie powrotu do zdrowia.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Uczucie "krótkiego oddechu", płytki oddech</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Terapia manualnego uwalniania powięziowego klatki piersiowej i przepony (specjalizacja v terapii oddechu). Optymalizacja mechaniki oddechowej.</span>
+                    <span class="benefit-tag">Korzyść: Poprawa pojemności płuc, lepsze dotlenienie organizmu i redukcja lęku.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zdjęcie przed Sekcją 3 -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage3.jpg" alt="[Zdjęcie sekcja 3]" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Sekcja 3 -->
+    <section id="twarz" class="section-padding bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 gold-text uppercase">Terapie Twarzy i Czaszki (Uroda i Eliminacja Napięć)</h2>
+            <p class="text-lg mb-10 text-gray-400 italic border-l-2 border-gold pl-4">Usługi dla osób poszukujących efektu liftingu bez skalpela, eliminacji napięć na twarzy oraz rozwiązań estetycznych dla skóry.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Zmarszczki, utrata jędrności, opadający owal twarzy (Naturalny Lifting)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Japoński Masaż Twarzy Kobido (certyfikowana technika dynamiczna) v połączeniu z podejściem strukturalnym Zoga Face Integration (praca na głębokich mięśniach i powięziach twarzy).</span>
+                    <span class="benefit-tag">Korzyść: Spektakularny, bezinwazyjny lifting, poprawa owalu, redukcja obrzęków i promienny wygląd.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Napięcie v stawach skroniowo-żuchwowych, zgrzytanie zębami (bruksizm)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Zaawansowana terapia powięziowa twarzy i czaszki (elementy Zoga), głębokie uwalnianie napięć v obrębie głowy i szyi. Wsparcie Oczyszczaniem Wodorowym dla dotlenienia.</span>
+                    <span class="benefit-tag">Korzyść: Uwolnienie od bólu, zmniejszenie problemu zaciskania i zgrzytania zębami.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Przebarwienia, niejednolity koloryt, drobne blizny potrądzikowe</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Specjalistyczne zabiegi laserowe: Laser Pikosekundowy (celowanie v pigmentację i stymulacja kolagenu) połączone z Peelingiem Kawitacyjnym i Krioterapią (chłodzenie) v celu obkurczenia porów i złuszczenia.</span>
+                    <span class="benefit-tag">Korzyść: Skuteczna eliminacja przebarwień i widoczne wyrównanie tekstury skóry bez długiej rekonwalescencji.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Potrzeba głębokiego oczyszczenia i regeneracji skóry</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Oczyszczanie Wodorowe (Hydrogen) połączone ze stymulacją prądami TENS, Mikrodermabrazją ultradźwiękową oraz Maską LED v celu intensywnej regeneracji na poziomie komórkowym.</span>
+                    <span class="benefit-tag">Korzyść: Natychmiastowe odświeżenie, głębokie oczyszczenie porów, poprawa wchłaniania składników aktywnych i łagodzenie stanów zapalnych.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zdjęcie przed Sekcją 4 -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage4.jpg" alt="[Zdjęcie sekcja 4]" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Sekcja 4 -->
+    <section id="holistycznie" class="section-padding bg-black-soft/30">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 gold-text uppercase">Holistyczne Wsparcie Terapii Bólu i Pielęgnacji Ciała</h2>
+            <p class="text-lg mb-10 text-gray-400 italic border-l-2 border-gold pl-4">Usługi dla osób, u których masaż sam v sobie nie przynosi trwałej ulgi, a ból ma charakter przewlekły lub psychosomatyczny, oraz dla osób szukających trwałych rozwiązań do pielęgnacji ciała.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Przewlekły ból (bez konkretnej diagnozy)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Program oparty na module "Zrozum Ból". Analiza wpływu układu limbicznego i czynników nasilających ból. Konsultacja dotycząca przeciwbólowej diety oraz wpływu jelit na mięśnie.</span>
+                    <span class="benefit-tag">Korzyść: Zrozumienie mechanizmów własnego bólu i otrzymanie narzędzi do długotrwałego zarządzania dyskomfortem.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Ból związany ze stanami zapalnymi i odczuwanym stresem</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Terapia bólu przez skórę połączona z pracą powięziową nad modułem "Wpływ emocji na ciało". Nauka technik relaksacji świadomego ciała. Wsparcie Krioterapią (chłodzeniem) dla redukcji lokalnych stanów zapalnych.</span>
+                    <span class="benefit-tag">Korzyść: Uwolnienie napięć somatycznych powstałych na tle emocjonalnym i psychologicznym.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Blizny – redukcja widoczności i dyskomfortu po operacjach/kontuzjach</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Specjalistyczna terapia blizn (uwalnianie powięziowe a terapia bólu). Protokół Dynamicznego stretchingu powięziowego wspierający mobilność. Laser pikosekundowy do przebudowy struktury blizny i redukcji pigmentacji.</span>
+                    <span class="benefit-tag">Korzyść: Przyspieszenie regeneracji tkanek, zmniejszenie zrostów i poprawa estetyki blizny.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Niechciane owłosienie na ciele (trwała redukcja)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Laserowa Depilacja Estetyczna (skuteczny laser diodowy). Zapewniam najwyższy standard higieny i pełną dyskrecję.</span>
+                    <span class="benefit-tag">Korzyść: Trwała, bezpieczna i komfortowa eliminacja niechcianego owłosienia.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zdjęcie przed Sekcją 5 -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage5.jpg" alt="[Zdjęcie sekcja 5]" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Sekcja 5 -->
+    <section id="techniki" class="section-padding bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 gold-text uppercase text-left">Konkretne Zabiegi i Certyfikowane Techniki</h2>
+            <p class="text-left text-gray-400 mb-12 italic border-l-2 border-gold pl-4 inline-block">Lista konkretnych, certyfikowanych technik manualnych i zaawansowanych technologii, które stosuję v codziennej praktyce.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Oczyszczanie Wodorowe (Hydrogen Facial)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Zabieg polegający na głębokim oczyszczaniu skóry cząsteczkami aktywnego wodoru. Neutralizuje wolne rodniki i dotlenia komórki.</span>
+                    <span class="benefit-tag">Korzyść: Głęboko zrewitalizowana, odświeżona i promienna cera.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Peeling Kawitacyjny (Ultrasonic Peeling)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Bezbolesne złuszczanie martwego naskórka za pomocą precyzyjnych wibracji ultradźwiękowych.</span>
+                    <span class="benefit-tag">Korzyść: Skóra idealnie przygotowana do lepszego wchłaniania substancji aktywnych.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Maska LED (Fototerapia)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Zaawansowana terapia światłem o specyficznych długościach fali, stymulująca naturalne procesy naprawcze.</span>
+                    <span class="benefit-tag">Korzyść: Redukcja stanów zapalnych, pobudzenie kolagenu i szybsza regeneracja.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Mikrodermabrazja Ultradźwiękowa & Tlenoterapia</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Połączenie mechanicznego oczyszczania z intensywnym natlenianiem tkanek i delikatną stymulacją elektryczną.</span>
+                    <span class="benefit-tag">Korzyść: Skuteczne odświeżenie i intensywne dotlenienie struktur skórnych.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Krioterapia i Elektrostymulacja</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Wykorzystanie terapeutycznego chłodzenia v połączeniu z prądami TENS dla aktywacji mięśni i naczyń.</span>
+                    <span class="benefit-tag">Korzyść: Obkurczone pory, zniwelowane obrzęki i poprawione mikrokrążenie.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Laser Pikosekundowy</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Technologia ultraszybkich impulsów do usuwania pigmentacji i stymulacji przebudowy skóry.</span>
+                    <span class="benefit-tag">Korzyść: Skuteczne eliminacja przebarwień i blizn przy minimalnym czasie rekonwalescencji.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Laserowa Depilacja</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Zastosowanie profesjonalnego lasera diodowego v celu trwałego uszkodzenia mieszków włosowych.</span>
+                    <span class="benefit-tag">Korzyść: Długotrwała gładkość skóry, bezpieczeństwo i pełen komfort zabiegowy.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Manualne Uwalnianie Powięziowe</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Głęboka praca manualna na tkance łącznej, likwidująca restrykcje i przywracająca ślizg tkankowy.</span>
+                    <span class="benefit-tag">Korzyść: Uwolnienie od bólu pleców i głowy oraz znacząca poprawa mobilności.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Manipulacje Krótkodźwigniowe (HVLA)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Precyzyjne techniki mobilizacji stawów kręgosłupa przy użyciu minimalnej siły i dużej prędkości.</span>
+                    <span class="benefit-tag">Korzyść: Natychmiastowe przywrócenie ruchomości i uśmierzenie ostrego bólu.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Japoński Masaż Twarzy Kobido</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Certyfikowany rytuał manualny obejmujący drenaż, relaksację i intensywny lifting tkanek głębokich.</span>
+                    <span class="benefit-tag">Korzyść: Wyraźna korekta owalu twarzy i głęboki stan odprężenia psychofizycznego.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Masaż Relaksacyjny (Świeca/Ciepły Olej)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Kojące techniki masażu klasycznego wykonywane przy użyciu podgrzanych składników naturalnych.</span>
+                    <span class="benefit-tag">Korzyść: Całkowite wyciszenie układu nerwowego i aksamitnie gładka skóra.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Specjalistyczna Terapia Blizn</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Łączone techniki manualne i stymulacyjne nakierowane na przebudowę tkanki bliznowatej.</span>
+                    <span class="benefit-tag">Korzyść: Zmniejszenie widoczności blizn, likwidacja zrostów i dyskomfortu.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Autoterapia Nerwu Błędnego</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Instruktaż i wykonanie ćwiczeń wpływających na tonus nerwu błędnego i system przywspółczulny.</span>
+                    <span class="benefit-tag">Korzyść: Lepsza reakcja na stres, stabilizacja emocji i wsparcie procesów trawiennych.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Terapia Bólu przez Skórę</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Stymulacja receptorów skórnych v celu wywołania endogennych reakcji przeciwbólowych organizmu.</span>
+                    <span class="benefit-tag">Korzyść: Niefarmakologiczne wsparcie v walce z przewlekłym bólem mięśniowym.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Wsparcie Dietetyczne Przeciwbólowe</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Konsultacja nakierowana na eliminację produktów prozapalnych i wdrożenie składników regenerujących.</span>
+                    <span class="benefit-tag">Korzyść: Długofalowe zmniejszenie stanów zapalnych i wsparcie regeneracji powięzi.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Bańki Ogniowe (Terapia Wzmacniająca)</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Próżniowa stymulacja tkanek wspomagająca krążenie krwi i limfy oraz detoksykację.</span>
+                    <span class="benefit-tag">Korzyść: Wzmocniona odporność i szybsza rekonwalescencja po infekcjach.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Zoga Face Integration</h3>
+                    <span class="solution-tag"><strong>Rozwiązanie:</strong> Strukturalna integracja tkanek twarzy i czepca ścięgnistego v celu przywrócenia balansu.</span>
+                    <span class="benefit-tag">Korzyść: Trwałe uwolnienie napięć kranio-sakralnych i efekt młodszego wyglądu.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zdjęcie przed Sekcją O mnie -->
+    <div class="section-image-wrapper">
+        <img src="/robimassage0.jpg" alt="[Zdjęcie sekcja o mnie]" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- O mnie -->
+    <section id="o-mnie" class="section-padding bg-black-soft/50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 gold-text uppercase">MOJA PASJA</h2>
+            <div class="space-y-6 text-gray-300 text-center leading-relaxed">
+                <p>Moja droga do pomagania innym zaczęła się od osobistego doświadczenia. Po wypadku, sam zmagałem się z dyskomfortem i ograniczeniami. Od tego czasu intensywnie pogłębiam wiedzę. Studiowałem anatomię i brałem udział v ponad 10 kursach z zakresu zaawansowanych technik pomagania. Wszystkie wolne chwile przeznaczam na samokształcenie i rozwijanie warsztatu.</p>
+                <p>Efektem tej pasji i nieustającej nauki jest mój warsztat: miejsce, v którym nie stosuję sztywnych protokołów. Łączę różne metody – od uwalniania powięzi, przez terapie antystresowe i zaawansowaną estetykę – dopasowując je do konkretnej osoby i jej unikalnego przypadku. Twoje zdrowie i pełne odzyskanie sprawności są moim priorytetem.</p>
+                <div class="pt-6 border-t border-gold/30">
+                    <p class="text-gold font-semibold text-lg italic uppercase">Warto podkreślić: Moje usługi są zawsze dopasowane do Twoich potrzeb, tworząc unikalną, łączoną terapię, integrującą siłę terapii manualnej, zaawansowane technologie estetyczne, wiedzę o bólu i naturalne metody wsparcia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <footer id="kontakt" class="section-padding bg-black border-t border-gold/30 text-center">
+        <h2 class="text-3xl font-bold gold-text mb-8 uppercase">Kontakt:</h2>
+        <div class="space-y-4">
+            <p class="text-2xl text-white">Telefon: <a href="tel:605593210" class="hover:text-gold transition-colors">605 593 210</a></p>
+        </div>
+        <p class="mt-12 text-gray-600 text-sm">© 2025 ROBIMASSAGE – Profesjonalne Terapie</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-toggle');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
         });
+
+        const links = menu.querySelectorAll('a');
+        links.forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
     </script>
 </body>
 </html>
