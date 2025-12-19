@@ -1,6 +1,38 @@
-body{
-  padding: 25px;
+/* Globalne ustawienia body */
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 100px; /* Miejsce na menu nawigacyjne */
 }
-.title {
-	color: #5C6AC4;
+
+/* 1. Podstawowy kolor dla gradientu (Fallback) */
+.gold-gradient-bg {
+  color: #D4AF37; /* Standardowe złoto, jeśli gradient nie zadziała */
+}
+
+/* 2. Obsługa gradientu dla przeglądarek, które go wspierają */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .gold-gradient-bg {
+    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block; /* Ważne dla poprawnego wycinania tła */
+  }
+}
+
+/* 3. KLUCZOWA ZMIANA: Wymuszenie widoczności na telefonach */
+@media (max-width: 768px) {
+  .gold-gradient-bg {
+    background: none !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+    color: #D4AF37 !important;
+    background-clip: unset !important;
+  }
+}
+
+/* Opcjonalnie: Styl dla czcionki nagłówka, jeśli nie masz go w HTML */
+.content-heading {
+  font-family: 'Playfair Display', serif;
 }
