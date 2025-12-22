@@ -63,20 +63,20 @@
             transform: translateY(-2px);
         }
 
-        /* Reakcja po najechaniu pozostaje zgodnie z pierwotnym stylem */
-        .nav-bol:hover { background: var(--gold); color: var(--black); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+        /* Reakcja po najechaniu oraz klasy aktywne */
+        .nav-bol:hover, .nav-bol.nav-active { background: var(--gold); color: var(--black); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
 
-        .nav-anty-stres:hover { background: var(--vibrant-blue); color: white; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
+        .nav-anty-stres:hover, .nav-anty-stres.nav-active { background: var(--vibrant-blue); color: white; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
 
-        .nav-twarz:hover { background: var(--vibrant-purple); color: white; box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
+        .nav-twarz:hover, .nav-twarz.nav-active { background: var(--vibrant-purple); color: white; box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
 
-        .nav-holistycznie:hover { background: var(--vibrant-green); color: white; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
+        .nav-holistycznie:hover, .nav-holistycznie.nav-active { background: var(--vibrant-green); color: white; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
 
-        .nav-techniki:hover { background: var(--vibrant-peach); color: white; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3); }
+        .nav-active:hover, .nav-techniki.nav-active { background: var(--vibrant-peach); color: white; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3); }
 
-        .nav-o-mnie:hover { background: var(--vibrant-red); color: white; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
+        .nav-o-mnie:hover, .nav-o-mnie.nav-active { background: var(--vibrant-red); color: white; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
 
-        .nav-kontakt:hover { background: white; color: black; }
+        .nav-kontakt:hover, .nav-kontakt.nav-active { background: white; color: black; }
 
         .nav-button.brand {
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
@@ -196,7 +196,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA BÓL -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage1.jpg" alt="[Obraz sekcji Ból i Napięcia]" onerror="this.style.display='none'">
     </div>
 
@@ -223,7 +222,7 @@
                 </div>
                 <div class="card">
                     <h3 class="text-xl font-bold text-white mb-2">Zespół cieśni nadgarstka, ból promieniujący do rąk</h3>
-                    <span class="solution-tag">Uwalnianie powięziowe w połączeniu ze stretchingiem powięziowym obręczy barkowej. Przywracanie optymalnej pracy i eliminacja bólu promieniującego z ramion i szyi.</span>
+                    <span class="solution-tag">Uwalnianie powięziowe in połączeniu ze stretchingiem powięziowym obręczy barkowej. Przywracanie optymalnej pracy i eliminacja bólu promieniującego z ramion i szyi.</span>
                     <span class="benefit-tag">Pełna swoboda ruchu w dłoniach i ramionach, redukcja mrowienia.</span>
                 </div>
             </div>
@@ -232,7 +231,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA ANTY-STRES -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage2.jpg" alt="[Obraz sekcji Anty-stres]" onerror="this.style.display='none'">
     </div>
 
@@ -267,7 +265,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA TWARZ -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage3.jpg" alt="[Obraz sekcji Twarz i Czaszka]" onerror="this.style.display='none'">
     </div>
 
@@ -302,7 +299,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA HOLISTYCZNIE -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage4.jpg" alt="[Obraz sekcji Wsparcie Holistyczne]" onerror="this.style.display='none'">
     </div>
 
@@ -337,7 +333,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA TECHNIKI -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage5.jpg" alt="[Obraz sekcji Zabiegi i Techniki]" onerror="this.style.display='none'">
     </div>
 
@@ -414,8 +409,8 @@
                 </div>
                 <div class="card">
                     <h3 class="text-xl font-bold text-white mb-2">Terapia Bólu przez Skórę</h3>
-                    <span class="solution-tag">Stymulacja receptorów skórnych w celu wywołania endogennych reakcji przeciwbólowych organizmu.</span>
-                    <span class="benefit-tag">Niefarmakologiczne wsparcie w walce z przewlekłym bólem mięśniowym.</span>
+                    <span class="solution-tag">Stymulacja receptorów skórnych v celu wywołania endogennych reakcji przeciwbólowych organizmu.</span>
+                    <span class="benefit-tag">Niefarmakologiczne wsparcie v walce z przewlekłym bólem mięśniowym.</span>
                 </div>
                 <div class="card">
                     <h3 class="text-xl font-bold text-white mb-2">Wsparcie Dietetyczne Przeciwbólowe</h3>
@@ -438,7 +433,6 @@
 
     <!-- MIEJSCE NA ZDJECIE - SEKCJA O MNIE -->
     <div class="section-image-wrapper">
-        <!-- INSTRUKCJA: WSTAW ADRES ZDJECIA W CUDZYSŁÓW PONIŻEJ (src="tutaj_link") -->
         <img src="/robimassage0.jpg" alt="[Obraz sekcji Moja Pasja]" onerror="this.style.display='none'">
     </div>
 
@@ -447,24 +441,30 @@
             <h2 class="text-3xl font-bold mb-4 section-title uppercase text-left">MOJA PASJA</h2>
             <p class="text-left text-gray-400 mb-10 italic border-l-2 border-[#E74C3C] pl-4 inline-block">Poznaj historię, która stoi za profesjonalnym podejściem do każdego przypadku.</p>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card">
-                    <h3 class="text-xl font-bold text-white mb-2">Osobiste doświadczenie i edukacja</h3>
-                    <span class="solution-tag">Moja droga do pomagania innym zaczęła się od osobistowego doświadczenia: po wypadku sam zmagałem się z dyskomfortem i ograniczeniami. Od tego czasu intensywnie pogłębiam wiedzę. Studiowałem anatomię i brałem udział w ponad 10 kursach z zakresu zaawansowanych technik pomagania; wszystkie wolne chwile przeznaczam na samokształcenie i rozwijanie warsztatu.</span>
-                    <span class="benefit-tag">Głębokie zrozumienie bólu z perspektywy pacjenta i terapeuty.</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Początki zainteresowania</h3>
+                    <span class="solution-tag">Zainteresowanie pracą z ciałem pojawiło się u mnie bardzo wcześnie. Już jako dziecko czytałem artykuły o akupresurze i intuicyjnie próbowałem masażu. Przez wiele lat nie miałem jednak możliwości rozwijać tych zainteresowań w praktyce.</span>
                 </div>
                 <div class="card">
-                    <h3 class="text-xl font-bold text-white mb-2">Indywidualne podejście i warsztat</h3>
-                    <span class="solution-tag">Efektem tej pasji i nieustającej nauki jest mój warsztat – miejsce, w którym nie stosuję sztywnych protokołów; łączę różne metody, dopasowując je do konkretnej osoby i jej unikalnego przypadku. Twoje zdrowie i pełne odzyskanie sprawności są moim priorytetem.</span>
-                    <span class="benefit-tag">Terapia „szyta na miarę” Twojego organizmu.</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Doświadczenie własnego bólu</h3>
+                    <span class="solution-tag">W 2008 roku doznałem urazu barku. Rehabilitacja, oparta na bolesnych mobilizacjach i silnym ucisku, przynosiła krótkotrwałe pogorszenie zamiast poprawy. Z czasem zacząłem samodzielnie pracować z ruchem i mobilizacją, co pozwoliło mi odzyskać pełny zakres ruchu.</span>
                 </div>
-            </div>
-            
-            <div class="mt-8">
                 <div class="card">
-                    <h3 class="text-xl font-bold text-white mb-2 text-left uppercase">Integracja metod</h3>
-                    <span class="solution-tag text-left">Warto podkreślić: moje usługi są zawsze dopasowane do Twoich potrzeb, tworząc unikalną, łączoną terapię, integrującą siłę terapii manualnej, zaawansowane technologie estetyczne, wiedzę o bólu i naturalne metody wsparcia.</span>
-                    <span class="benefit-tag text-left">Holistyczne rozwiązanie Twoich problemów.</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Moment przełomowy</h3>
+                    <span class="solution-tag">Rok później, po kolejnej kontuzji, trafiłem na osobę zajmującą się manualną pracą z kręgosłupem. Kilka precyzyjnych ruchów wystarczyło, aby ból ustąpił i wrócił swobodny oddech. To doświadczenie uświadomiło mi, jak dużą różnicę robi odpowiednia, delikatna praca z ciałem.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Rozwijanie umiejętności</h3>
+                    <span class="solution-tag">Od tego momentu zacząłem pogłębiać wiedzę i praktykę w zakresie mobilizacji, dekompresji i terapii manualnej. Najpierw pracowałem z własnym ciałem, później pomagałem znajomym, którzy odczuwali realną ulgę.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Gabinet i podejście</h3>
+                    <span class="solution-tag">Gabinet masażu powstał w okresie wakacyjnym, gdy pojawiły się odpowiednie warunki lokalowe. Na co dzień pracuję zawodowo, a praca manualna jest obszarem, któremu poświęcam część czasu poza pracą. Skupiam się na spokojnej, indywidualnej pomocy osobom trafiającym do mnie z polecenia.</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white mb-2">Charakter strony</h3>
+                    <span class="solution-tag">Strona ma charakter informacyjny. Powstała po to, aby jasno pokazać, czym się zajmuję i w jaki sposób mogę pomóc — bez reklamy i bez zbędnych obietnic.</span>
                 </div>
             </div>
         </div>
@@ -483,6 +483,7 @@
     </footer>
 
     <script>
+        // Menu mobilne
         const btn = document.getElementById('mobile-toggle');
         const menu = document.getElementById('mobile-menu');
         
@@ -492,6 +493,30 @@
 
         const links = menu.querySelectorAll('a');
         links.forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
+
+        // Scroll Spy - Podświetlanie aktywnej sekcji w menu
+        const sections = document.querySelectorAll('section, header, footer');
+        const navLinks = document.querySelectorAll('.nav-button');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Margines 150px dla lepszej responsywności przy przewijaniu
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('nav-active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
