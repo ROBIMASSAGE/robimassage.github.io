@@ -1,53 +1,6 @@
-/* Globalne ustawienia body */
-body {
-  margin: 0;
-  padding: 0;
-  padding-top: 100px; /* Miejsce na menu nawigacyjne */
+body{
+  padding: 25px;
 }
-
-/* NAJWAŻNIEJSZA POPRAWKA:
-   Używamy potrójnego selektora, aby przebić się przez style Tailwinda i internal CSS.
-   Domyślnie ustawiamy kolor złoty, aby tekst był widoczny NAWET jeśli gradient nie zadziała.
-*/
-html body .gold-gradient-bg {
-  color: #D4AF37 !important;
-  -webkit-text-fill-color: #D4AF37 !important;
-  background-clip: unset !important;
-  -webkit-background-clip: unset !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: inline-block !important;
-}
-
-/* Obsługa gradientu TYLKO dla urządzeń stacjonarnych (szerokość powyżej 768px) */
-@media (min-width: 769px) {
-  @supports (-webkit-background-clip: text) or (background-clip: text) {
-    html body .gold-gradient-bg {
-      background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%) !important;
-      -webkit-background-clip: text !important;
-      background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      color: transparent !important;
-    }
-  }
-}
-
-/* BLOKADA DLA MOBILI:
-   Na telefonach całkowicie rezygnujemy z efektów przeźroczystości, 
-   które Safari i Chrome Mobile często interpretują jako "ukryj tekst".
-*/
-@media (max-width: 768px) {
-  html body .gold-gradient-bg {
-    background: none !important;
-    -webkit-text-fill-color: #D4AF37 !important;
-    color: #D4AF37 !important;
-    background-clip: unset !important;
-    -webkit-background-clip: unset !important;
-    display: block !important; /* Wymuszenie odświeżenia elementu */
-  }
-}
-
-/* Styl dla czcionki nagłówka */
-.content-heading {
-  font-family: 'Playfair Display', serif !important;
+.title {
+	color: #5C6AC4;
 }
